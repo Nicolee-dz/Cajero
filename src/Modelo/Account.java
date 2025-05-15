@@ -1,9 +1,14 @@
 
 package Modelo;
+
+import java.util.ArrayList;
+
 public class Account {
     private Customer Customer;
     private float Balance; 
     private Card Card;
+    private ArrayList<TakeOut> Retiros;
+    private ArrayList<Deposit> Depositos;
     
 
     public Account(Customer Customer, float Balance, int num,int pass) {
@@ -34,6 +39,10 @@ public class Account {
 
     public void setCard(Card Card) {
         this.Card = Card;
+    }
+
+    public ArrayList<TakeOut> getRetiros() {
+        return Retiros;
     }
     
     
