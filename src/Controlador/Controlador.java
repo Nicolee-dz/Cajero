@@ -1,22 +1,22 @@
 package Controlador;
 
 import Modelo.Account;
-import Modelo.Card;
 import Modelo.Customer;
-import Vista.MenuInicio;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import Vista.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class Controlador implements ActionListener {
 
     private ArrayList<Account> Cuentas = new ArrayList<>();
-    private MenuInicio CrearVista;
+    private MenuInicio VistaIngresar;
     private Account Cuenta;
+    private MenuCuenta VistaCuenta; 
 
     public Controlador() {
         CrrearCuentas();
         CrearVistaIngresar();
+        
     }
 
     public void CrrearCuentas() {
@@ -32,30 +32,42 @@ public class Controlador implements ActionListener {
     public void ComprobarNoCuenta() {
         boolean con=true;
         for (Account Cuental : Cuentas) {
-            System.out.println(Cuental.getCard().getNumberCard() + "--" + CrearVista.CLAVECUENTA.getText());
-            System.out.println(Cuental.getCard().getNumberCard() == Integer.parseInt(CrearVista.IDCUENTA.getText()));
-            if (Cuental.getCard().getNumberCard() == Integer.parseInt(CrearVista.IDCUENTA.getText())) {
-                if (Cuental.getCard().getPassword() == Integer.parseInt(CrearVista.CLAVECUENTA.getText())) {
+            System.out.println(Cuental.getCard().getNumberCard() + "--" + VistaIngresar.CLAVECUENTA.getText());
+            System.out.println(Cuental.getCard().getNumberCard() == Integer.parseInt(VistaIngresar.IDCUENTA.getText()));
+            if (Cuental.getCard().getNumberCard() == Integer.parseInt(VistaIngresar.IDCUENTA.getText())) {
+                if (Cuental.getCard().getPassword() == Integer.parseInt(VistaIngresar.CLAVECUENTA.getText())) {
                     Cuenta = Cuental;
                     con=false;
-                    CrearVista.info.setText(" ");
+                    VistaCuenta();
                     break;
                 } else {
-                    CrearVista.info.setText("No se encontro la contraseña");
+                    VistaIngresar.info.setText("No se encontro la contraseña");
                     break;
                 }
             } else {
                 if (con) {
-                    CrearVista.info.setText("No se encontro la cuenta");
+                    VistaIngresar.info.setText("No se encontro la cuenta");
                 }
             }
         }
-        System.out.println(Cuenta.getCustomer().getName());
     }
+    
+    
 
     public void CrearVistaIngresar() {
-        CrearVista = new MenuInicio();
-        CrearVista.INGRESAR.addActionListener(this);
+        VistaIngresar = new MenuInicio();
+        VistaIngresar.INGRESAR.addActionListener(this);
+    }
+    
+    public void VistaCuenta(){
+        VistaIngresar.dispose();
+        VistaCuenta = new MenuCuenta();
+        VistaCuenta.depositar.addActionListener(this);
+        VistaCuenta.retirar.addActionListener(this);
+        VistaCuenta.consultaSaldo.addActionListener(this);
+        VistaCuenta.entradas.addActionListener(this);
+        VistaCuenta.Volver.addActionListener(this);
+        
     }
 
     public void Ingresar() {
@@ -83,5 +95,22 @@ public class Controlador implements ActionListener {
         if ("Ingresar".equalsIgnoreCase(e.getActionCommand())) {
             ComprobarNoCuenta();
         }
+        if ("DEPOSITAR".equalsIgnoreCase(e.getActionCommand())) {
+            Depositar();
+        }
+        if ("RETIRAR".equalsIgnoreCase(e.getActionCommand())) {
+            Retirar();
+        }
+        if ("COMPRAR ENTRADAS".equalsIgnoreCase(e.getActionCommand())) {
+            CompraEntradas();
+        }
+        if ("CONSULTAR SALDO".equalsIgnoreCase(e.getActionCommand())) {
+            ConsultarSaldo();
+        }
+        if ("Volver".equalsIgnoreCase(e.getActionCommand())) {
+            VistaCuenta.dispose();
+            CrearVistaIngresar();
+        }
+        
     }
 }

@@ -10,23 +10,12 @@ package Vista;
  */
 public class MenuCuenta extends javax.swing.JFrame {
 
-    private int num=1;
     public MenuCuenta() {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
     }
-    public boolean Comprobar(){
-        boolean com= true;
-        if( IDCUENTA.equals("")){
-            error1.setText("*");
-            com = false;
-        }else if(CLAVECUENTA.equals("")){
-            error2.setText("*");
-            com=false;
-        }
-        return com;
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,14 +28,16 @@ public class MenuCuenta extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         banco1 = new javax.swing.JLabel();
-        INGRESAR = new javax.swing.JButton();
-        SALIR = new javax.swing.JButton();
+        Volver = new javax.swing.JButton();
         banco3 = new javax.swing.JLabel();
         error1 = new javax.swing.JLabel();
         error2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        depositar = new javax.swing.JButton();
+        consultaSaldo = new javax.swing.JButton();
+        entradas = new javax.swing.JButton();
+        retirar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        SALIR1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,34 +47,14 @@ public class MenuCuenta extends javax.swing.JFrame {
         banco1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo-bancolombia.png"))); // NOI18N
         jPanel1.add(banco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 360, 118));
 
-        INGRESAR.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
-        INGRESAR.setText("Ingresar");
-        INGRESAR.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                INGRESARMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                INGRESARMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                INGRESARMouseExited(evt);
-            }
-        });
-        INGRESAR.addActionListener(new java.awt.event.ActionListener() {
+        Volver.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+        Volver.setText("Volver");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                INGRESARActionPerformed(evt);
+                VolverActionPerformed(evt);
             }
         });
-        jPanel1.add(INGRESAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, 100, 50));
-
-        SALIR.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
-        SALIR.setText("Salir");
-        SALIR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SALIRActionPerformed(evt);
-            }
-        });
-        jPanel1.add(SALIR, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 90, 50));
+        jPanel1.add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 500, 90, 50));
 
         banco3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         banco3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mob-11 (2).png"))); // NOI18N
@@ -97,29 +68,54 @@ public class MenuCuenta extends javax.swing.JFrame {
         error2.setText(" ");
         jPanel1.add(error2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 30, 30));
 
-        jTextField1.setText("CONSULTAR SALDO");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        depositar.setText("DEPOSITAR");
+        depositar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                depositarActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 160, 50));
+        jPanel1.add(depositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 190, 60));
 
-        jTextField2.setText("RETIRO");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        consultaSaldo.setText("CONSULTAR SALDO");
+        consultaSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                consultaSaldoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 160, 40));
+        jPanel1.add(consultaSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 190, 60));
 
-        jTextField3.setText("DEPOSITO");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        entradas.setLabel("COMPRAR \nENTRADAS");
+        entradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                entradasActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 160, 50));
+        jPanel1.add(entradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 190, 60));
+
+        retirar.setText("RETIRAR");
+        retirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retirarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(retirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 190, 60));
+
+        jButton2.setText("DEPOSITAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 150, 60));
+
+        SALIR1.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+        SALIR1.setText("Salir");
+        SALIR1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SALIR1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SALIR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 90, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,87 +131,48 @@ public class MenuCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void INGRESARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_INGRESARMouseClicked
-    
-    }//GEN-LAST:event_INGRESARMouseClicked
-
-    private void INGRESARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INGRESARActionPerformed
-
-    }//GEN-LAST:event_INGRESARActionPerformed
-
-    private void SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALIRActionPerformed
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         setVisible(false);
         dispose();
-    }//GEN-LAST:event_SALIRActionPerformed
+    }//GEN-LAST:event_VolverActionPerformed
 
-    private void INGRESARMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_INGRESARMouseEntered
-        if(Comprobar()){
-            INGRESAR.setEnabled(false);
-        }
-    }//GEN-LAST:event_INGRESARMouseEntered
-
-    private void INGRESARMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_INGRESARMouseExited
-       INGRESAR.setEnabled(true);
-    }//GEN-LAST:event_INGRESARMouseExited
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void depositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_depositarActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void consultaSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaSaldoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_consultaSaldoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void entradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_entradasActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void retirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retirarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_retirarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuCuenta();
-            }
-        });
-    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void SALIR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALIR1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SALIR1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton INGRESAR;
-    private javax.swing.JButton SALIR;
+    private javax.swing.JButton SALIR1;
+    public javax.swing.JButton Volver;
     private javax.swing.JLabel banco1;
     private javax.swing.JLabel banco3;
+    public javax.swing.JButton consultaSaldo;
+    public javax.swing.JButton depositar;
+    public javax.swing.JButton entradas;
     private javax.swing.JLabel error1;
     private javax.swing.JLabel error2;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    public javax.swing.JButton retirar;
     // End of variables declaration//GEN-END:variables
 }
